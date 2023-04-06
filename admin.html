@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Register Farmer</title>
     <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css" />
     <link
       rel="stylesheet"
@@ -54,7 +54,7 @@
       }
     </style>
   </head>
-  <body>
+  <body onload="generateFarmerId()">
     <!--Main Navigation-->
     <header>
       <!-- Sidebar -->
@@ -66,7 +66,7 @@
           <div class="list-group list-group-flush mx-3 mt-4">
             <a
               href="#"
-              class="list-group-item list-group-item-action py-2 ripple active"
+              class="list-group-item list-group-item-action py-2 ripple"
               aria-current="true"
             >
               <i class="bi bi-speedometer2 fa-fw me-3"></i
@@ -81,8 +81,8 @@
             </a>
             <a
               href="#"
-              class="list-group-item list-group-item-action py-2 ripple"
-              ><i class="bi bi-database-add fa-fw me-3"></i
+              class="list-group-item list-group-item-action py-2 ripple active"
+              ><i class="bi bi-person-plus-fill fa-fw me-3"></i
               ><span>Register Farmer</span></a
             >
             <a
@@ -174,7 +174,7 @@
               style="min-width: 225px"
             />
             <span class="input-group-text border-0"
-              ><i class="fas fa-search"></i
+              ><i class="bi bi-search"></i
             ></span>
           </form>
 
@@ -286,83 +286,119 @@
     <!--Main layout-->
     <main style="margin-top: 58px">
       <div class="container-fluid pt-4">
-         <div class="col-md-10">
+         <div class="col-md-11">
             <div class="card card-user">
               <div class="card-header">
-                <h5 class="card-title">Edit Profile</h5>
+                <h5 class="card-title">Add Farmer One</h5>
               </div>
               <div class="card-body">
-                <form>
+                <form id="regForm" onsubmit="return validateForm()">
                   <div class="row">
-                    <div class="col-md-8 pr-1">
+                    <div class="col-md-4 pr-1">
                       <div class="form-group">
                         <label>Farmer's Name</label>
-                        <input type="text" class="form-control"  placeholder="Full Name" >
+                        <input type="text" class="form-control"  placeholder="Full Name" id="name" name="name"  >
+                        <p id="nameErr" class="text-danger"></p>
                       </div>
-                    </div>
-                    
-                    <div class="col-md-4 pl-1">
+                    </div>                  
+                   <div class="col-md-4 pr-1">
                       <div class="form-group">
                         <div class="form-group">
-                        <label>Farmer's Gender</label>
-                        <select class="form-select" aria-label="Default select example">
-                            <option value="Male">Male</option>
-                            <option value="Male">Female</option>
+                        <label>Ward represented</label>
+                        <select class="form-select" aria-label="Default select example" id="gender" name="gender">
+                            <option value="Ward1">Ward One</option>
+                            <option value="Ward2">Ward Two</option>
+                            <option value="Ward3">Ward Two</option>
+                            <option value="Ward4">Ward Two</option>
                         </select>
+                        <p id="genderErr" class="text-danger"></p>
+                      </div>
+                    </div>
+                  </div>
+                   <div class="col-md-4 pr-1">
+                      <div class="form-group">
+                        <label>Unique FO number, </label>
+                        <input type="text" class="form-control"  placeholder="Unique Id" id="id" name="id" readonly >
+                        <p id="idErr" class="text-danger"></p>
+                      </div>
+                    </div> 
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4 pr-1">
+                      <div class="form-group">
+                        <label>Date of Registration </label>
+                        <input type="date" class="form-control" id="dor" name="dor">
+                      </div>
+                    </div>
+                     <div class="col-md-4 pl-1">
+                      <div class="form-group">
+                        <label>Gender</label>       
+                        <select class="form-select" aria-label="Default select example" id="activity" name="activity">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-4 pr-1">
+                      <div class="form-group">
+                        <label>Date of Birth </label>
+                        <input type="date" class="form-control" id="dob" name="dob">
                       </div>
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-md-6 pr-1">
-                      <div class="form-group">
-                        <label>Date of Birth</label>
-                        <input type="date" class="form-control" >
-                      </div>
-                    </div>
-                    <div class="col-md-6 pl-1">
+                     <div class="col-md-4 pr-1">
                       <div class="form-group">
                         <label>Activities undertaken</label>       
-                        <select class="form-select" aria-label="Default select example">
+                        <select class="form-select" aria-label="Default select example" id="activity" name="activity">
                             <option value="1">Horticulture</option>
                             <option value="2">Poultry Farming</option>
                             <option value="3">Dairy Farming</option>
                         </select>
                       </div>
                     </div>
-                  </div>
-                  
-<h6>Contacts</h6>
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Address</label>
-                        <input type="text" class="form-control" placeholder="Home Address" value="Melbourne, Australia">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
                     <div class="col-md-4 pr-1">
                       <div class="form-group">
-                        <label>Phone number</label>
-                        <input type="phone" class="form-control" placeholder="Phone number" >
+                        <label>NIN Number</label>
+                        <input type="text" class="form-control"  placeholder="NIN" id="nin" name="nin" >
                       </div>
                     </div>
+                    <div class="col-md-4 pr-1">
+                      <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="phone" class="form-control"  placeholder="Phone Number" id="phone" name="phone" >
+                        <p id="phoneErr" class="text-danger"></p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <h6>Contacts</h6>
+                    
                     <div class="col-md-4 px-1">
                       <div class="form-group">
-                        <label>Email address</label>
-                        <input type="email" class="form-control" placeholder="email" >
+                        <label>Home Directions </label>
+                        <input type="text" class="form-control" placeholder="Address" name="address" id="address" >
                       </div>
                     </div>
                     <div class="col-md-4 pl-1">
                       <div class="form-group">
-                        <label>Postal Code</label>
-                        <input type="number" class="form-control" placeholder="ZIP Code">
+                        <label>Residence type </label>
+                        <input type="text" class="form-control" placeholder="ZIP Code">
+                      </div>
+                    </div>
+                    <div class="col-md-4 pr-1">
+                      <div class="form-group">
+                        <label>Period of stay in ward (Years)</label>
+                        <input type="number" class="form-control"  placeholder="Number of years in word" id="years" name="years" >
+                        <p id="yearErr" class="text-danger"></p>
                       </div>
                     </div>
                   </div>
-                      <div class="row">
-                    <div class="update ml-auto mr-auto">
-                      <button type="submit" class="btn btn-success btn-round">SUBMIT DETAILS</button>
+                  
+                  <div class="row">
+                    <div class="update ml-auto mr-auto ">
+                      <input type="submit" class="btn btn-success btn-round " value="SUBMIT DETAILS" style="margin-top: 20px;"/>
                     </div>
                   </div>
                 </form>
@@ -370,12 +406,78 @@
             </div>
           </div>
       </div>
+      </div>
     </main>
     <!--Main layout-->
     <script src="./bootstrap/js/bootstrap.min.js"></script>
     <script src="./bootstrap/js/bootstrap.bundle.js"></script>
     <script src="./bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="./bootstrap/js/bootstrap.js"></script>
+    
+    <script>
+      function generateFarmerId() {//gernerate a booking id 
+       let newId = 10000 + Math.floor(Math.random() * 9000000);
+       let input = document.getElementById("id");
+      input.value="F"+newId;
+      }
+      function validateForm() {
+        //Regular Expression
+const nameREGEX =
+  /^([a-zA-Z]{2,}\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\s?([a-zA-Z]{1,})?)/;
+const passGEX =
+  /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@$#!%*?&])([a-zA-Z0-9@$#!%*?&]{8,16})$/;
+const emailREGEX =
+  /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
+const phoneREGEX =
+  /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/;
+//Validate Name
+ let name = document.forms["regForm"]["name"].value;
+  let err="" 
+  err = document.getElementById("nameErr");
+  if (name == "") {
+    err.textContent = "Name Can not be empty";
+    return false;
+  }
+  else{
+    const validName=nameREGEX.test(name);
+    if(!validName){
+      err.textContent = "Invalid name given";
+      return false;
+    }
+    err.textContent = "";
+  }
+   //Validate phone number
+ let phoneNumber= document.forms["regForm"]["phone"].value;
+  err = document.getElementById("phoneErr");
+  if(!phoneNumber){
+   err.textContent = "Phone Number is required"
+   return false;
+  }
+ else{
+    const validPhone=phoneREGEX.test(phoneNumber);
+    if(!validPhone){
+      err.textContent = "Invalid Phone Number provided";
+      return false;
+    }
+    err.textContent = "";
+  }
+
+   //Validate number or years
+ let yearsOfStay = document.forms["regForm"]["years"].value;
+  err = document.getElementById("yearErr");
+  if(!yearsOfStay){
+   err.textContent = "You must provide years"
+   return false;
+  }
+ if(yearsOfStay <10){
+   err.textContent = "Farmer has not stayed in area";
+  return false;
+ }
+ err.textContent = "";
+  return true;
+}
+
+    </script>
    
   </body>
 </html>
