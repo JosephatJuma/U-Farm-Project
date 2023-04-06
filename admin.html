@@ -328,6 +328,7 @@
                       <div class="form-group">
                         <label>Date of Registration </label>
                         <input type="date" class="form-control" id="dor" name="dor">
+                        <p id="dorErr" class="text-danger"></p>
                       </div>
                     </div>
                      <div class="col-md-4 pl-1">
@@ -335,8 +336,7 @@
                         <label>Gender</label>       
                         <select class="form-select" aria-label="Default select example" id="activity" name="activity">
                             <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                            
+                            <option value="Female">Female</option>   
                         </select>
                       </div>
                     </div>
@@ -344,6 +344,7 @@
                       <div class="form-group">
                         <label>Date of Birth </label>
                         <input type="date" class="form-control" id="dob" name="dob">
+                        <p id="dobErr" class="text-danger"></p>
                       </div>
                     </div>
                   </div>
@@ -362,6 +363,7 @@
                       <div class="form-group">
                         <label>NIN Number</label>
                         <input type="text" class="form-control"  placeholder="NIN" id="nin" name="nin" >
+                        <p id="ninErr" class="text-danger"></p>
                       </div>
                     </div>
                     <div class="col-md-4 pr-1">
@@ -430,6 +432,7 @@ const emailREGEX =
   /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
 const phoneREGEX =
   /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/;
+  const ninRegex=/^[A-Z0-9]{14}$/i
 //Validate Name
  let name = document.forms["regForm"]["name"].value;
   let err="" 
@@ -442,6 +445,37 @@ const phoneREGEX =
     const validName=nameREGEX.test(name);
     if(!validName){
       err.textContent = "Invalid name given";
+      return false;
+    }
+    err.textContent = "";
+  }
+   //Validate date of registraion
+ let regDate = document.forms["regForm"]["dor"].value;
+  err = document.getElementById("dorErr");
+  if(!regDate){
+   err.textContent = "Registraion Date is needed"
+   return false;
+  }
+  err.textContent = "";
+  //Validate date of birth
+ let birthDate = document.forms["regForm"]["dob"].value;
+  err = document.getElementById("dobErr");
+  if(!birthDate){
+   err.textContent = "Date of birth is needed"
+   return false;
+  }
+  err.textContent = "";
+    //Validate NIN number
+ let nin= document.forms["regForm"]["nin"].value;
+  err = document.getElementById("ninErr");
+  if(!nin){
+   err.textContent = "NIN Number is required"
+   return false;
+  }
+ else{
+    const validNin=ninRegex.test(nin);
+    if(!validNin){
+      err.textContent = "Invalid NIN Number provided";
       return false;
     }
     err.textContent = "";
@@ -462,6 +496,7 @@ const phoneREGEX =
     err.textContent = "";
   }
 
+
    //Validate number or years
  let yearsOfStay = document.forms["regForm"]["years"].value;
   err = document.getElementById("yearErr");
@@ -469,8 +504,8 @@ const phoneREGEX =
    err.textContent = "You must provide years"
    return false;
   }
- if(yearsOfStay <10){
-   err.textContent = "Farmer has not stayed in area";
+ if(yearsOfStay <=10){
+   err.textContent = "The Farmer must have lived in the area for more than 10 years";
   return false;
  }
  err.textContent = "";
