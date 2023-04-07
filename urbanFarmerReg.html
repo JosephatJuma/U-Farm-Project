@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Register Farmer</title>
+    <title>Register Urban Farmer</title>
     <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css" />
     <link
       rel="stylesheet"
@@ -263,22 +263,31 @@
          <div class="col-md-11">
             <div class="card card-user">
               <div class="card-header">
-                <h5 class="card-title">Add Farmer One</h5>
+                <h5 class="card-title">Add Urban Farmer</h5>
               </div>
               <div class="card-body">
-                <form id="regForm" onsubmit="return validFarmOneForm()">
+                <form id="regForm" onsubmit="return validUrbanFarmerForm()">
                   <div class="row">
-                    <div class="col-md-4 pr-1">
+                    <div class="col-md-6 pr-1">
                       <div class="form-group">
-                        <label>Farmer's Name</label>
+                        <label>Urban Farmer's Name</label>
                         <input type="text" class="form-control"  placeholder="Full Name" id="name" name="name"  >
                         <p id="nameErr" class="text-danger"></p>
                       </div>
                     </div>                  
-                   <div class="col-md-4 pr-1">
+                   <div class="col-md-6 pr-1">
+                      <div class="form-group">
+                        <label>Unique Urban Farmer Id number </label>
+                        <input type="text" class="form-control"  placeholder="Unique Id" id="id" name="id" readonly >
+                        <p id="idErr" class="text-danger"></p>
+                      </div>
+                    </div> 
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <div class="form-group">
-                        <label>Ward represented</label>
+                        <label>Ward Name</label>
                         <select class="form-select" aria-label="Default select example" id="gender" name="gender">
                             <option value="Ward1">Ward One</option>
                             <option value="Ward2">Ward Two</option>
@@ -289,23 +298,7 @@
                       </div>
                     </div>
                   </div>
-                   <div class="col-md-4 pr-1">
-                      <div class="form-group">
-                        <label>Unique FO number, </label>
-                        <input type="text" class="form-control"  placeholder="Unique Id" id="id" name="id" readonly >
-                        <p id="idErr" class="text-danger"></p>
-                      </div>
-                    </div> 
-                  </div>
-                  <div class="row">
-                    <div class="col-md-4 pr-1">
-                      <div class="form-group">
-                        <label>Date of Registration </label>
-                        <input type="date" class="form-control" id="dor" name="dor">
-                        <p id="dorErr" class="text-danger"></p>
-                      </div>
-                    </div>
-                     <div class="col-md-4 pl-1">
+                  <div class="col-md-6 pl-1">
                       <div class="form-group">
                         <label>Gender</label>       
                         <select class="form-select" aria-label="Default select example" id="activity" name="activity">
@@ -314,7 +307,17 @@
                         </select>
                       </div>
                     </div>
-                    <div class="col-md-4 pr-1">
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 pr-1">
+                      <div class="form-group">
+                        <label>Date of Registration </label>
+                        <input type="date" class="form-control" id="dor" name="dor">
+                        <p id="dorErr" class="text-danger"></p>
+                      </div>
+                    </div>
+                     
+                    <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Date of Birth </label>
                         <input type="date" class="form-control" id="dob" name="dob">
@@ -323,7 +326,7 @@
                     </div>
                   </div>
                   <div class="row">
-                     <div class="col-md-4 pr-1">
+                     <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Activities undertaken</label>       
                         <select class="form-select" aria-label="Default select example" id="activity" name="activity">
@@ -333,43 +336,30 @@
                         </select>
                       </div>
                     </div>
-                    <div class="col-md-4 pr-1">
+                    <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>NIN Number</label>
                         <input type="text" class="form-control"  placeholder="NIN" id="nin" name="nin" >
                         <p id="ninErr" class="text-danger"></p>
                       </div>
                     </div>
-                    <div class="col-md-4 pr-1">
+                    
+                  </div>
+                  <div class="row">
+                    <h6>Contact details</h6>
+                    
+                    <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Phone Number</label>
                         <input type="phone" class="form-control"  placeholder="Phone Number" id="phone" name="phone" >
                         <p id="phoneErr" class="text-danger"></p>
                       </div>
                     </div>
-                  </div>
-                  <div class="row">
-                    <h6>Residence details</h6>
-                    
-                    <div class="col-md-4 px-1">
+                    <div class="col-md-6 pl-1">
                       <div class="form-group">
-                        <label>Home Directions </label>
-                        <input type="text" class="form-control" placeholder="Address" name="address" id="address" >
-                         <p id="addressErr" class="text-danger"></p>
-                      </div>
-                    </div>
-                    <div class="col-md-4 pl-1">
-                      <div class="form-group">
-                        <label>Residence type </label>
-                        <input type="text" class="form-control" placeholder="Residence Type" name="residence" id="residence">
-                        <p id="residenceErr" class="text-danger"></p>
-                      </div>
-                    </div>
-                    <div class="col-md-4 pr-1">
-                      <div class="form-group">
-                        <label>Period of stay in ward (Years)</label>
-                        <input type="number" class="form-control"  placeholder="Number of years in word" id="years" name="years" >
-                        <p id="yearErr" class="text-danger"></p>
+                        <label>Email Address</label>
+                        <input type="email" class="form-control" placeholder="Email address" name="email" id="email">
+                        <p id="emailErr" class="text-danger"></p>
                       </div>
                     </div>
                   </div>  
@@ -396,7 +386,7 @@
       function generateFarmerId() {//gernerate a farmer id 
        let newId = 10000 + Math.floor(Math.random() * 900000);
        let input = document.getElementById("id");
-      input.value="FO-"+newId;
+      input.value="UF-"+newId;
       }
     </script>
    
